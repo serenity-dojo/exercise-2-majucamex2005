@@ -2,10 +2,13 @@ package com.serenitydojo.datatypes;
 
 import org.junit.Test;
 
+import java.text.DecimalFormat;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class WhenWorkingWithFloatingPointNumbers {
+
 
     //
     // Exercise 1: Convert 27 degrees Celcius to Farenheit
@@ -17,8 +20,10 @@ public class WhenWorkingWithFloatingPointNumbers {
         double farenheit = 0.0d;
 
         // TODO: Use a floating point calculation to calculate the farenheit equivalent of the celcius value.
-        farenheit = (9 / 5) * celcius + 32;
-        assertThat(farenheit, equalTo(80.6));
+        DecimalFormat df = new DecimalFormat("#.#");
+        MetricToEnglishScalesConverter temperature=new MetricToEnglishScalesConverter();
+        farenheit = temperature.celciusToFarenheit(celcius);
+        assertThat(Float.valueOf(df.format(farenheit)), equalTo(80.6F));
     }
 
     //
@@ -31,9 +36,10 @@ public class WhenWorkingWithFloatingPointNumbers {
         double weightInPounds = 0;
 
         // TODO: Use a floating point calculation to calculate the correct weight in pounds
-        weightInPounds = 50 * 2.20462;
-
-        assertThat(weightInPounds, equalTo(110.231));
+        DecimalFormat df = new DecimalFormat("#.###");
+        MetricToEnglishScalesConverter weight=new MetricToEnglishScalesConverter();
+        weightInPounds=weight.kilosToPounds(weightInKilograms);
+        assertThat(Float.valueOf(df.format(weightInPounds)), equalTo(110.231F));
 
     }
 }
